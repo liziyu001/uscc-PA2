@@ -43,7 +43,7 @@ Parser::Parser(const char* fileName, std::ostream* errStream,
 , mColNumber(1)
 , mUnusedIdent(nullptr)
 , mNeedPrintf(false)
-, mCheckSemant(false) // PA2: Change to true
+, mCheckSemant(true) // PA2: Change to true
 , mOutputSymbols(outputSymbols)
 {
 	if (mFileStream.is_open())
@@ -352,7 +352,14 @@ Identifier* Parser::getVariable(const char* name) noexcept
 {
 	// PA2: Implement properly
 	
-	Identifier* ident = mSymbols.createIdentifier(name);
+	Identifier* ident = mSymbols.getIdentifier(name);
+	if (!ident) {
+		std::string err = "Use of undeclared identifier '";
+		err += getTokenTxt();
+		err += '\'';
+		reportSemantError(err);
+		ident = mSymbols.getIdentifier("@@variable");
+	}
 	
 	return ident;
 }

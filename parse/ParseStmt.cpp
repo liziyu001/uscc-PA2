@@ -52,8 +52,15 @@ shared_ptr<ASTDecl> Parser::parseDecl()
 				throw ParseExceptMsg("Type must be followed by identifier");
 			}
 			
+			if (!mSymbols.isDeclaredInScope(getTokenTxt())) {
+				ident = mSymbols.createIdentifier(getTokenTxt());
+			} else {
+				std::string err = "Invalid redeclaration of identifier '";
+				err += getTokenTxt();
+				err += '\'';
+				reportSemantError(err);
+			}
 			
-			ident = mSymbols.createIdentifier(getTokenTxt());
 			
 			consumeToken();
 			
@@ -245,10 +252,14 @@ shared_ptr<ASTStmt> Parser::parseStmt()
 shared_ptr<ASTCompoundStmt> Parser::parseCompoundStmt(bool isFuncBody)
 {
 	shared_ptr<ASTCompoundStmt> retVal;
+	SymbolTable::ScopeTable* table;
 	
 	// PA1: Implement
 	if (peekAndConsume(Token::LBrace))
 	{
+		if (!isFuncBody) {
+			table = mSymbols.enterScope();
+		}
 		retVal = make_shared<ASTCompoundStmt>();
 		shared_ptr<ASTDecl> decl;
 		decl = parseDecl();
