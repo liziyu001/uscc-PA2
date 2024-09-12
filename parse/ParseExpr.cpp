@@ -64,7 +64,7 @@ shared_ptr<ASTLogicalOr> Parser::parseExprPrime(shared_ptr<ASTExpr> lhs)
 		consumeToken();
 		
 		// Set the lhs to our parameter
-		retVal->setLHS(lhs);
+		retVal->setLHS(charToInt(lhs));
 		
 		// We MUST get a AndTerm as the RHS of this operand
 		shared_ptr<ASTExpr> rhs = parseAndTerm();
@@ -73,7 +73,7 @@ shared_ptr<ASTLogicalOr> Parser::parseExprPrime(shared_ptr<ASTExpr> lhs)
 			throw OperandMissing(op);
 		}
 		
-		retVal->setRHS(rhs);
+		retVal->setRHS(charToInt(rhs));
 		
 		if (!retVal->finalizeOp()) {
 			std::string err = "Cannot perform op between type ";
@@ -128,7 +128,7 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 	if (peekToken() == Token::And)
 	{
 		retVal = make_shared<ASTLogicalAnd>();
-		retVal->setLHS(lhs);
+		retVal->setLHS(charToInt(lhs));
 
 		int col = mColNumber;
 
@@ -137,7 +137,7 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 		rhs = parseRelExpr();
 		if (!rhs)
 			throw OperandMissing(Token::And);
-		retVal->setRHS(rhs);
+		retVal->setRHS(charToInt(rhs));
 
 		if (!retVal->finalizeOp()) {
 			std::string err = "Cannot perform op between type ";
@@ -255,11 +255,11 @@ shared_ptr<ASTBinaryMathOp> Parser::parseNumExprPrime(shared_ptr<ASTExpr> lhs)
 		int col = mColNumber;
 
 		consumeToken();
-		retVal->setLHS(lhs);
+		retVal->setLHS(charToInt(lhs));
 		rhs = parseTerm();
 		if (!rhs)
 			throw OperandMissing(token);
-		retVal->setRHS(rhs);
+		retVal->setRHS(charToInt(rhs));
 
 		if (!retVal->finalizeOp()) {
 			std::string err = "Cannot perform op between type ";
@@ -316,11 +316,11 @@ shared_ptr<ASTBinaryMathOp> Parser::parseTermPrime(shared_ptr<ASTExpr> lhs)
 		int col = mColNumber;
 
 		consumeToken();
-		retVal->setLHS(lhs);
+		retVal->setLHS(charToInt(lhs));
 		rhs = parseValue();
 		if (!rhs)
 			throw OperandMissing(token);
-		retVal->setRHS(rhs);
+		retVal->setRHS(charToInt(rhs));
 
 		if (!retVal->finalizeOp()) {
 			std::string err = "Cannot perform op between type ";
@@ -382,7 +382,6 @@ shared_ptr<ASTExpr> Parser::parseFactor()
 	else if ((retVal = parseAddrOfArrayFactor()))
 		;
 	// PA1: Add additional cases
-	
 	return retVal;
 }
 
@@ -664,7 +663,7 @@ shared_ptr<ASTExpr> Parser::parseIdentFactor()
 			{
 				// Just a plain old ident
 				retVal = make_shared<ASTIdentExpr>(*ident);
-				retVal = charToInt(retVal);
+				//retVal = charToInt(retVal);
 			}
 			
 		}

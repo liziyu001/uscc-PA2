@@ -146,6 +146,8 @@ shared_ptr<ASTDecl> Parser::parseDecl()
 				Type exprT = assignExpr->getType();
 				if (expectT == Type::Char && exprT == Type::Int) {
 					assignExpr = intToChar(assignExpr);
+				} else if (expectT == Type::Int && exprT == Type::Char) {
+					assignExpr = charToInt(assignExpr);
 				} else if (!(expectT == Type::Int && exprT == Type::Char) && expectT != exprT) {
 					std::string err = "Cannot assign an expression of type ";
 					err += getTypeText(exprT);
