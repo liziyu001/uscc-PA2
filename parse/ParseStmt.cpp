@@ -499,15 +499,16 @@ shared_ptr<ASTReturnStmt> Parser::parseReturnStmt()
 		}
 		else
 		{
+			int col = mColNumber;
 			auto expr = parseExpr();
 			Type retType = expr->getType();
 			if (mCurrReturnType == Type::Char && retType == Type::Int) {
 				expr = intToChar(expr);
 			} else if (!((mCurrReturnType == Type::Char && retType == Type::Char) || (mCurrReturnType == Type::Int && retType == Type::Int) || (mCurrReturnType == Type::Int && retType == Type::Char))) {
 					std::string err = "Expected type ";
-					err += getTypeText(retType);
+					err += getTypeText(mCurrReturnType);
 					err += " in return statement";
-					reportSemantError(err);
+					reportSemantError(err, col);
 			}
 			retVal = make_shared<ASTReturnStmt>(expr);
 			matchToken(Token::SemiColon);

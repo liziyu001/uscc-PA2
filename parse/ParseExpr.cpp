@@ -41,13 +41,10 @@ shared_ptr<ASTExpr> Parser::parseExpr()
 		
 		if (exprPrime)
 		{
-			if (!exprPrime->finalizeOp()) {
-				std::string err = "Cannot perform op between type lhsType and rhsType";
-				reportSemantError(err);
-			}
 			// If we got a exprPrime, return this instead of just term
 			retVal = exprPrime;
 		}
+		
 	}
 	
 	return retVal;
@@ -77,7 +74,13 @@ shared_ptr<ASTLogicalOr> Parser::parseExprPrime(shared_ptr<ASTExpr> lhs)
 		
 		retVal->setRHS(rhs);
 		
-		// PA2: Finalize op
+		if (!retVal->finalizeOp()) {
+			std::string err = "Cannot perform op between type ";
+			err += getTypeText(lhs->getType());
+			err += " and ";
+			err += getTypeText(rhs->getType());
+			reportSemantError(err);
+		}
 		
 		// See comment in parseTermPrime if you're confused by this
 		shared_ptr<ASTLogicalOr> exprPrime = parseExprPrime(retVal);
@@ -105,10 +108,6 @@ shared_ptr<ASTExpr> Parser::parseAndTerm()
 		prime = parseAndTermPrime(v);
 		
 		if (prime != nullptr) {
-			if (!prime->finalizeOp()) {
-				std::string err = "Cannot perform op between type lhsType and rhsType";
-				reportSemantError(err);
-			}
 			retVal = prime;
 		}
 			
@@ -138,6 +137,14 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 			throw OperandMissing(Token::And);
 		retVal->setRHS(rhs);
 
+		if (!retVal->finalizeOp()) {
+			std::string err = "Cannot perform op between type ";
+			err += getTypeText(lhs->getType());
+			err += " and ";
+			err += getTypeText(rhs->getType());
+			reportSemantError(err);
+		}
+
 		recursion = parseAndTermPrime(retVal);
 		if (recursion != nullptr) {
 			retVal = recursion;
@@ -160,10 +167,6 @@ shared_ptr<ASTExpr> Parser::parseRelExpr()
 		retVal = v;
 		prime = parseRelExprPrime(v);
 		if (prime != nullptr) {
-			if (!prime->finalizeOp()) {
-				std::string err = "Cannot perform op between type lhsType and rhsType";
-				reportSemantError(err);
-			}
 			retVal = prime;
 		}
 			
@@ -193,6 +196,14 @@ shared_ptr<ASTBinaryCmpOp> Parser::parseRelExprPrime(shared_ptr<ASTExpr> lhs)
 		if (!rhs)
 			throw OperandMissing(token);
 		retVal->setRHS(rhs);
+		
+		if (!retVal->finalizeOp()) {
+			std::string err = "Cannot perform op between type ";
+			err += getTypeText(lhs->getType());
+			err += " and ";
+			err += getTypeText(rhs->getType());
+			reportSemantError(err);
+		}
 
 		recursion = parseRelExprPrime(retVal);
 		if (recursion != nullptr)
@@ -217,10 +228,6 @@ shared_ptr<ASTExpr> Parser::parseNumExpr()
 		prime = parseNumExprPrime(v);
 		
 		if (prime != nullptr) {
-			if (!prime->finalizeOp()) {
-				std::string err = "Cannot perform op between type lhsType and rhsType";
-				reportSemantError(err);
-			}
 			retVal = prime;
 		}
 			
@@ -250,6 +257,14 @@ shared_ptr<ASTBinaryMathOp> Parser::parseNumExprPrime(shared_ptr<ASTExpr> lhs)
 			throw OperandMissing(token);
 		retVal->setRHS(rhs);
 
+		if (!retVal->finalizeOp()) {
+			std::string err = "Cannot perform op between type ";
+			err += getTypeText(lhs->getType());
+			err += " and ";
+			err += getTypeText(rhs->getType());
+			reportSemantError(err);
+		}
+
 		recursion = parseNumExprPrime(retVal);
 		if (recursion != nullptr)
 			retVal = recursion;
@@ -272,10 +287,6 @@ shared_ptr<ASTExpr> Parser::parseTerm()
 		prime = parseTermPrime(v);
 		
 		if (prime != nullptr) {
-			if (!prime->finalizeOp()) {
-				std::string err = "Cannot perform op between type lhsType and rhsType";
-				reportSemantError(err);
-			}
 			retVal = prime;
 		}
 			
@@ -305,6 +316,14 @@ shared_ptr<ASTBinaryMathOp> Parser::parseTermPrime(shared_ptr<ASTExpr> lhs)
 		if (!rhs)
 			throw OperandMissing(token);
 		retVal->setRHS(rhs);
+
+		if (!retVal->finalizeOp()) {
+			std::string err = "Cannot perform op between type ";
+			err += getTypeText(lhs->getType());
+			err += " and ";
+			err += getTypeText(rhs->getType());
+			reportSemantError(err);
+		}
 		
 		recursion = parseTermPrime(retVal);
 		if (recursion != nullptr)
@@ -641,8 +660,8 @@ shared_ptr<ASTExpr> Parser::parseIdentFactor()
 				// Just a plain old ident
 				retVal = make_shared<ASTIdentExpr>(*ident);
 			}
+			retVal = charToInt(retVal);
 		}
-		retVal = charToInt(retVal);
 	}
 	
 	return retVal;
