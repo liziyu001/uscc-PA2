@@ -125,6 +125,7 @@ shared_ptr<ASTDecl> Parser::parseDecl()
 			shared_ptr<ASTExpr> assignExpr;
 			
 			// Optionally, this decl may have an assignment
+			int col = mColNumber;
 			if (peekAndConsume(Token::Assign))
 			{
 				// We don't allow assignment for int arrays
@@ -133,13 +134,25 @@ shared_ptr<ASTDecl> Parser::parseDecl()
 					reportSemantError("USC does not allow assignment of int array declarations");
 				}
 				
+				
 				assignExpr = parseExpr();
 				if (!assignExpr)
 				{
 					throw ParseExceptMsg("Invalid expression after = in declaration");
 				}
 				
-				// PA2: Type checks
+				
+				Type expectT = ident->getType();
+				Type exprT = assignExpr->getType();
+				if (expectT == Type::Char && exprT == Type::Int) {
+					assignExpr = intToChar(assignExpr);
+				} else if (!(expectT == Type::Int && exprT == Type::Char) && expectT != exprT) {
+					std::string err = "Cannot assign an expression of type ";
+					err += getTypeText(exprT);
+					err += " to ";
+					err += getTypeText(expectT);
+					reportSemantError(err, col);
+				}
 				
 				// If this is a character array, we need to do extra checks
 				if (ident->getType() == Type::CharArray)
@@ -312,13 +325,14 @@ shared_ptr<ASTStmt> Parser::parseAssignStmt()
         // PA2: fix type checking for array
 		
 		// Now let's see if this is an array subscript
+		int col = mColNumber;
 		if (peekAndConsume(Token::LBracket))
 		{
-			if (!ident->isArray()) {
+			if (ident->getName() != "@@variable" && !ident->isArray()) {
 				std::string err = "";
 				err += ident->getName();
 				err += " is not an array";
-				reportSemantError(err);
+				reportSemantError(err, col);
 			}
 			try
 			{
@@ -355,7 +369,7 @@ shared_ptr<ASTStmt> Parser::parseAssignStmt()
 		// So... We see if the next token is a =. If it is, then this is
 		// an AssignStmt. Otherwise, we set the "unused" variables
 		// so parseFactor will later find it and be able to match
-		int col = mColNumber;
+		col = mColNumber;
 		if (peekAndConsume(Token::Assign))
 		{
 			shared_ptr<ASTExpr> expr = parseExpr();
@@ -404,16 +418,16 @@ shared_ptr<ASTStmt> Parser::parseAssignStmt()
 				Type exprT = expr->getType();
 				if (expectT == Type::Char && exprT == Type::Int) {
 					expr = intToChar(expr);
-				} else if (!((expectT == Type::Char && exprT == Type::Char) || (expectT == Type::Int && exprT == Type::Int) || (expectT == Type::Int && exprT == Type::Char))) {
+				} else if (!(expectT == Type::Int && exprT == Type::Char) && expectT != exprT) {
 					std::string err = "Cannot assign an expression of type ";
 					err += getTypeText(exprT);
 					err += " to ";
 					err += getTypeText(expectT);
-					reportSemantError(err);
+					reportSemantError(err, col);
 				}
 
 				if (ident->isArray()) {
-					reportSemantError("Reassignment of arrays is not allowed");
+					reportSemantError("Reassignment of arrays is not allowed", col);
 				}
 				retVal = make_shared<ASTAssignStmt>(*ident, expr);
 			}

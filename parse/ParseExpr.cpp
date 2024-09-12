@@ -55,6 +55,7 @@ shared_ptr<ASTLogicalOr> Parser::parseExprPrime(shared_ptr<ASTExpr> lhs)
 	shared_ptr<ASTLogicalOr> retVal;
 	
 	// Must be ||
+	int col = mColNumber;
 	if (peekToken() == Token::Or)
 	{
 		// Make the binary cmp op
@@ -79,7 +80,7 @@ shared_ptr<ASTLogicalOr> Parser::parseExprPrime(shared_ptr<ASTExpr> lhs)
 			err += getTypeText(lhs->getType());
 			err += " and ";
 			err += getTypeText(rhs->getType());
-			reportSemantError(err);
+			reportSemantError(err, col);
 		}
 		
 		// See comment in parseTermPrime if you're confused by this
@@ -123,6 +124,7 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 	shared_ptr<ASTExpr> rhs;
 
 	// PA1: Implement
+	int col = mColNumber;
 	if (peekToken() == Token::And)
 	{
 		retVal = make_shared<ASTLogicalAnd>();
@@ -142,7 +144,7 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 			err += getTypeText(lhs->getType());
 			err += " and ";
 			err += getTypeText(rhs->getType());
-			reportSemantError(err);
+			reportSemantError(err, col);
 		}
 
 		recursion = parseAndTermPrime(retVal);
@@ -182,6 +184,7 @@ shared_ptr<ASTBinaryCmpOp> Parser::parseRelExprPrime(shared_ptr<ASTExpr> lhs)
 	shared_ptr<ASTExpr> rhs;
 	
 	// PA1: Implement
+	int col = mColNumber;
 	if (peekIsOneOf({Token::EqualTo, Token::NotEqual, Token::LessThan, Token::GreaterThan}))
 	{
 		auto token = peekToken();
@@ -190,19 +193,19 @@ shared_ptr<ASTBinaryCmpOp> Parser::parseRelExprPrime(shared_ptr<ASTExpr> lhs)
 		int col = mColNumber;
 
 		consumeToken();
-		retVal->setLHS(lhs);
+		retVal->setLHS(charToInt(lhs));
 
 		rhs = parseNumExpr();
 		if (!rhs)
 			throw OperandMissing(token);
-		retVal->setRHS(rhs);
+		retVal->setRHS(charToInt(rhs));
 		
 		if (!retVal->finalizeOp()) {
 			std::string err = "Cannot perform op between type ";
 			err += getTypeText(lhs->getType());
 			err += " and ";
 			err += getTypeText(rhs->getType());
-			reportSemantError(err);
+			reportSemantError(err, col);
 		}
 
 		recursion = parseRelExprPrime(retVal);
@@ -243,6 +246,7 @@ shared_ptr<ASTBinaryMathOp> Parser::parseNumExprPrime(shared_ptr<ASTExpr> lhs)
 	shared_ptr<ASTExpr> rhs;
 
 	// PA1: Implement
+	int col = mColNumber;
 	if (peekIsOneOf({Token::Plus, Token::Minus}))
 	{
 		auto token = peekToken();
@@ -262,7 +266,7 @@ shared_ptr<ASTBinaryMathOp> Parser::parseNumExprPrime(shared_ptr<ASTExpr> lhs)
 			err += getTypeText(lhs->getType());
 			err += " and ";
 			err += getTypeText(rhs->getType());
-			reportSemantError(err);
+			reportSemantError(err, col);
 		}
 
 		recursion = parseNumExprPrime(retVal);
@@ -303,6 +307,7 @@ shared_ptr<ASTBinaryMathOp> Parser::parseTermPrime(shared_ptr<ASTExpr> lhs)
 	shared_ptr<ASTExpr> rhs;
 
 	// PA1: Implement
+	int col = mColNumber;
 	if (peekIsOneOf({Token::Mult, Token::Div, Token::Mod}))
 	{
 		auto token = peekToken();
@@ -322,7 +327,7 @@ shared_ptr<ASTBinaryMathOp> Parser::parseTermPrime(shared_ptr<ASTExpr> lhs)
 			err += getTypeText(lhs->getType());
 			err += " and ";
 			err += getTypeText(rhs->getType());
-			reportSemantError(err);
+			reportSemantError(err, col);
 		}
 		
 		recursion = parseTermPrime(retVal);
@@ -659,8 +664,9 @@ shared_ptr<ASTExpr> Parser::parseIdentFactor()
 			{
 				// Just a plain old ident
 				retVal = make_shared<ASTIdentExpr>(*ident);
+				retVal = charToInt(retVal);
 			}
-			retVal = charToInt(retVal);
+			
 		}
 	}
 	
