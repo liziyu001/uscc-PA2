@@ -37,13 +37,14 @@ shared_ptr<ASTExpr> Parser::parseExpr()
 		retVal = andTerm;
 		// Check if this is followed by an op (optional)
 		shared_ptr<ASTLogicalOr> exprPrime = parseExprPrime(retVal);
-		if (!exprPrime->finalizeOp()) {
-			std::string err = "Cannot perform op between type lhsType and rhsType";
-			reportSemantError(err);
-		}
+		
 		
 		if (exprPrime)
 		{
+			if (!exprPrime->finalizeOp()) {
+				std::string err = "Cannot perform op between type lhsType and rhsType";
+				reportSemantError(err);
+			}
 			// If we got a exprPrime, return this instead of just term
 			retVal = exprPrime;
 		}
@@ -102,12 +103,15 @@ shared_ptr<ASTExpr> Parser::parseAndTerm()
 	{
 		retVal = v;
 		prime = parseAndTermPrime(v);
-		if (!prime->finalizeOp()) {
-			std::string err = "Cannot perform op between type lhsType and rhsType";
-			reportSemantError(err);
-		}
-		if (prime != nullptr)
+		
+		if (prime != nullptr) {
+			if (!prime->finalizeOp()) {
+				std::string err = "Cannot perform op between type lhsType and rhsType";
+				reportSemantError(err);
+			}
 			retVal = prime;
+		}
+			
 	}
 	
 	return retVal;
@@ -135,8 +139,9 @@ shared_ptr<ASTLogicalAnd> Parser::parseAndTermPrime(shared_ptr<ASTExpr> lhs)
 		retVal->setRHS(rhs);
 
 		recursion = parseAndTermPrime(retVal);
-		if (recursion != nullptr)
+		if (recursion != nullptr) {
 			retVal = recursion;
+		}
 	}
 	
 	return retVal;
@@ -154,12 +159,14 @@ shared_ptr<ASTExpr> Parser::parseRelExpr()
 	{
 		retVal = v;
 		prime = parseRelExprPrime(v);
-		if (!prime->finalizeOp()) {
-			std::string err = "Cannot perform op between type lhsType and rhsType";
-			reportSemantError(err);
-		}
-		if (prime != nullptr)
+		if (prime != nullptr) {
+			if (!prime->finalizeOp()) {
+				std::string err = "Cannot perform op between type lhsType and rhsType";
+				reportSemantError(err);
+			}
 			retVal = prime;
+		}
+			
 	}
 	
 	return retVal;
@@ -208,12 +215,15 @@ shared_ptr<ASTExpr> Parser::parseNumExpr()
 	{
 		retVal = v;
 		prime = parseNumExprPrime(v);
-		if (!prime->finalizeOp()) {
-			std::string err = "Cannot perform op between type lhsType and rhsType";
-			reportSemantError(err);
-		}
-		if (prime != nullptr)
+		
+		if (prime != nullptr) {
+			if (!prime->finalizeOp()) {
+				std::string err = "Cannot perform op between type lhsType and rhsType";
+				reportSemantError(err);
+			}
 			retVal = prime;
+		}
+			
 	}
 	
 	return retVal;
@@ -260,12 +270,16 @@ shared_ptr<ASTExpr> Parser::parseTerm()
 	{
 		retVal = v;
 		prime = parseTermPrime(v);
-		if (!prime->finalizeOp()) {
-			std::string err = "Cannot perform op between type lhsType and rhsType";
-			reportSemantError(err);
-		}
-		if (prime != nullptr)
+		
+		if (prime != nullptr) {
+			if (!prime->finalizeOp()) {
+				std::string err = "Cannot perform op between type lhsType and rhsType";
+				reportSemantError(err);
+			}
 			retVal = prime;
+		}
+			
+			
 	}
 	
 	return retVal;
@@ -628,8 +642,8 @@ shared_ptr<ASTExpr> Parser::parseIdentFactor()
 				retVal = make_shared<ASTIdentExpr>(*ident);
 			}
 		}
+		retVal = charToInt(retVal);
 	}
-	retVal = charToInt(retVal);
 	
 	return retVal;
 }
@@ -644,10 +658,9 @@ shared_ptr<ASTExpr> Parser::parseIncFactor()
 	{
 		retVal = make_shared<ASTIncExpr>(*getVariable(getTokenTxt()));
 		matchToken(Token::Identifier);
+		retVal = charToInt(retVal);
 	}
 
-	retVal = charToInt(retVal);
-	
 	return retVal;
 }
 
@@ -661,9 +674,8 @@ shared_ptr<ASTExpr> Parser::parseDecFactor()
 	{
 		retVal = make_shared<ASTDecExpr>(*getVariable(getTokenTxt()));
 		matchToken(Token::Identifier);
+		retVal = charToInt(retVal);
 	}
-
-	retVal = charToInt(retVal);
 
 	return retVal;
 }

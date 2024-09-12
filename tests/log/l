@@ -1,0 +1,1219 @@
+test_SemErr_002 (__main__.SemantTests) ... FAIL
+test_SemErr_003 (__main__.SemantTests) ... FAIL
+test_SemErr_004 (__main__.SemantTests) ... FAIL
+test_SemErr_005 (__main__.SemantTests) ... FAIL
+test_SemErr_008 (__main__.SemantTests) ... FAIL
+test_SemErr_009 (__main__.SemantTests) ... FAIL
+test_SemErr_010 (__main__.SemantTests) ... ok
+test_SemErr_011 (__main__.SemantTests) ... FAIL
+test_SemErr_012 (__main__.SemantTests) ... FAIL
+test_SemErr_013 (__main__.SemantTests) ... ok
+test_SemErr_014 (__main__.SemantTests) ... FAIL
+test_SemErr_015 (__main__.SemantTests) ... FAIL
+test_SemErr_semant01e (__main__.SemantTests) ... ok
+test_SemErr_semant02e (__main__.SemantTests) ... ok
+test_SemErr_semant03e (__main__.SemantTests) ... FAIL
+test_SemErr_semant04e (__main__.SemantTests) ... ok
+test_SemErr_semant05e (__main__.SemantTests) ... ok
+test_SemErr_semant06e (__main__.SemantTests) ... ok
+test_SemErr_semant07e (__main__.SemantTests) ... ok
+test_SemErr_semant08e (__main__.SemantTests) ... FAIL
+test_SemErr_semant09e (__main__.SemantTests) ... FAIL
+test_SemErr_semant10e (__main__.SemantTests) ... FAIL
+test_SemErr_semant11e (__main__.SemantTests) ... FAIL
+test_SemErr_semant12e (__main__.SemantTests) ... ok
+test_Sem_001 (__main__.SemantTests) ... FAIL
+test_Sem_006 (__main__.SemantTests) ... FAIL
+test_Sem_007 (__main__.SemantTests) ... FAIL
+test_Sem_015 (__main__.SemantTests) ... FAIL
+test_Sem_016 (__main__.SemantTests) ... FAIL
+test_Sem_017 (__main__.SemantTests) ... ok
+test_Sem_018 (__main__.SemantTests) ... ok
+test_Sem_emit01 (__main__.SemantTests) ... ok
+test_Sem_emit02 (__main__.SemantTests) ... FAIL
+test_Sem_emit03 (__main__.SemantTests) ... FAIL
+test_Sem_emit04 (__main__.SemantTests) ... FAIL
+test_Sem_emit05 (__main__.SemantTests) ... FAIL
+test_Sem_emit06 (__main__.SemantTests) ... FAIL
+test_Sem_emit07 (__main__.SemantTests) ... FAIL
+test_Sem_emit08 (__main__.SemantTests) ... FAIL
+test_Sem_emit09 (__main__.SemantTests) ... FAIL
+test_Sem_emit10 (__main__.SemantTests) ... FAIL
+test_Sem_emit11 (__main__.SemantTests) ... FAIL
+test_Sem_emit12 (__main__.SemantTests) ... FAIL
+test_Sem_quicksort (__main__.SemantTests) ... FAIL
+test_Sem_semant01 (__main__.SemantTests) ... FAIL
+test_Sem_semant02 (__main__.SemantTests) ... FAIL
+
+======================================================================
+FAIL: test_SemErr_002 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'test002.usc:21:10: error: Invalid empty return in non-void function\n\t\t\tretu [truncated]... != 'test002.usc:23:2: error: USC requires non-void functions to end with a return\n [truncated]...
+- test002.usc:21:10: error: Invalid empty return in non-void function
+- 			return;
+- 			      ^
++ test002.usc:23:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test002.usc:24:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+  2 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_003 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'test003.usc:23:11: error: Expected type int in return statement\n\t\t\treturn " [truncated]... != 'test003.usc:23:25: error: Expected type char[] in return statement\n\t\t\tretur [truncated]...
+- test003.usc:23:11: error: Expected type int in return statement
+?                ^^                         ----
++ test003.usc:23:25: error: Expected type char[] in return statement
+?                ^^                       +++++++
+  			return "Hello world!";
+- 			       ^
++ 			                     ^
+  test003.usc:24:12: error: Use of undeclared identifier 'x'
+  			return (x);
+  			        ^
+- test003.usc:25:10: error: Invalid empty return in non-void function
+- 			return;
+- 			      ^
++ test003.usc:27:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test003.usc:28:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+  4 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_004 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'test004.usc:26:11: error: Expected type int in return statement\n\t\t\treturn " [truncated]... != 'test004.usc:26:25: error: Expected type char[] in return statement\n\t\t\tretur [truncated]...
+- test004.usc:26:11: error: Expected type int in return statement
+?                ^^                         ----
++ test004.usc:26:25: error: Expected type char[] in return statement
+?                ^^                       +++++++
+  			return "Hello world!";
+- 			       ^
++ 			                     ^
+  test004.usc:27:12: error: Use of undeclared identifier 'x'
+  			return (x);
+  			        ^
+  test004.usc:28:13: error: Use of undeclared identifier 'z'
+  			return ++z;
+  			         ^
+  test004.usc:29:13: error: Use of undeclared identifier 'y'
+  			return --y;
+  			         ^
+  test004.usc:30:11: error: Use of undeclared identifier 'array'
+  			return array[2];
+  			       ^
+- test004.usc:31:10: error: Invalid empty return in non-void function
+- 			return;
+- 			      ^
++ test004.usc:33:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test004.usc:34:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+  7 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_005 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'test005.usc:22:11: error: Expected type int in return statement\n\t\t\treturn " [truncated]... != 'test005.usc:22:25: error: Expected type char[] in return statement\n\t\t\tretur [truncated]...
+- test005.usc:22:11: error: Expected type int in return statement
+?                ^^                         ----
++ test005.usc:22:25: error: Expected type char[] in return statement
+?                ^^                       +++++++
+  			return "Hello world!";
+- 			       ^
++ 			                     ^
+  test005.usc:23:13: error: Use of undeclared identifier 'x'
+  			return !(x);
+  			         ^
+  test005.usc:24:13: error: Use of undeclared identifier 'z'
+  			return ++z;
+  			         ^
+  test005.usc:25:13: error: Use of undeclared identifier 'y'
+  			return --y;
+  			         ^
+  test005.usc:26:11: error: Use of undeclared identifier 'array'
+  			return array[2];
+  			       ^
+  test005.usc:27:12: error: Use of undeclared identifier 'bcd'
+  			return !bcd;
+  			        ^
+- test005.usc:28:10: error: Invalid empty return in non-void function
+- 			return;
+- 			      ^
++ test005.usc:30:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test005.usc:31:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+  8 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_008 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test008.usc:23:9: error: Use of undeclared identifier 'a'\n\treturn a == b != c [truncated]... != "test008.usc:22:21: error: Cannot perform op between type lhsType and rhsType\n\ [truncated]...
++ test008.usc:22:21: error: Cannot perform op between type lhsType and rhsType
++ 	return (20 / 10 * 2) < 10000 + 5;
++ 	                   ^
+  test008.usc:23:9: error: Use of undeclared identifier 'a'
+  	return a == b != c < d > 10;
+  	       ^
+  test008.usc:23:14: error: Use of undeclared identifier 'b'
+  	return a == b != c < d > 10;
+  	            ^
+  test008.usc:23:19: error: Use of undeclared identifier 'c'
+  	return a == b != c < d > 10;
+  	                 ^
+  test008.usc:23:23: error: Use of undeclared identifier 'd'
+  	return a == b != c < d > 10;
+  	                     ^
++ test008.usc:23:29: error: Cannot perform op between type lhsType and rhsType
++ 	return a == b != c < d > 10;
++ 	                           ^
+- 4 Error(s)
+? ^
++ 6 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_SemErr_009 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test009.usc:24:9: error: Use of undeclared identifier 'a'\n\treturn a == b != c [truncated]... != "test009.usc:23:21: error: Cannot perform op between type lhsType and rhsType\n\ [truncated]...
++ test009.usc:23:21: error: Cannot perform op between type lhsType and rhsType
++ 	return (20 / 10 * 2) < 10000 + 5;
++ 	                   ^
+  test009.usc:24:9: error: Use of undeclared identifier 'a'
+  	return a == b != c < d > 10;
+  	       ^
+  test009.usc:24:14: error: Use of undeclared identifier 'b'
+  	return a == b != c < d > 10;
+  	            ^
+  test009.usc:24:19: error: Use of undeclared identifier 'c'
+  	return a == b != c < d > 10;
+  	                 ^
+  test009.usc:24:23: error: Use of undeclared identifier 'd'
+  	return a == b != c < d > 10;
+  	                     ^
++ test009.usc:24:29: error: Cannot perform op between type lhsType and rhsType
++ 	return a == b != c < d > 10;
++ 	                           ^
+  test009.usc:25:9: error: Use of undeclared identifier 'e'
+  	return e == f || g > h && i < j;
+  	       ^
+  test009.usc:25:14: error: Use of undeclared identifier 'f'
+  	return e == f || g > h && i < j;
+  	            ^
+  test009.usc:25:19: error: Use of undeclared identifier 'g'
+  	return e == f || g > h && i < j;
+  	                 ^
+  test009.usc:25:23: error: Use of undeclared identifier 'h'
+  	return e == f || g > h && i < j;
+  	                     ^
+  test009.usc:25:28: error: Use of undeclared identifier 'i'
+  	return e == f || g > h && i < j;
+  	                          ^
+  test009.usc:25:32: error: Use of undeclared identifier 'j'
+  	return e == f || g > h && i < j;
+  	                              ^
+  test009.usc:26:9: error: Use of undeclared identifier 'e'
+  	return e == f && g > h || i < j;
+  	       ^
+  test009.usc:26:14: error: Use of undeclared identifier 'f'
+  	return e == f && g > h || i < j;
+  	            ^
+  test009.usc:26:19: error: Use of undeclared identifier 'g'
+  	return e == f && g > h || i < j;
+  	                 ^
+  test009.usc:26:23: error: Use of undeclared identifier 'h'
+  	return e == f && g > h || i < j;
+  	                     ^
+  test009.usc:26:28: error: Use of undeclared identifier 'i'
+  	return e == f && g > h || i < j;
+  	                          ^
+  test009.usc:26:32: error: Use of undeclared identifier 'j'
+  	return e == f && g > h || i < j;
+  	                              ^
+- 16 Error(s)
+?  ^
++ 18 Error(s)
+?  ^
+
+
+======================================================================
+FAIL: test_SemErr_011 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test011.usc:27:2: error: Use of undeclared identifier 'a'\n\ta;\n\t^\ntest011.u [truncated]... != "test011.usc:27:2: error: Use of undeclared identifier 'a'\n\ta;\n\t^\ntest011.u [truncated]...
+  test011.usc:27:2: error: Use of undeclared identifier 'a'
+  	a;
+  	^
+  test011.usc:28:2: error: Use of undeclared identifier 'array'
+  	array[5];
+  	^
++ test011.usc:28:8: error: @@variable is not an array
++ 	array[5];
++ 	      ^
+  test011.usc:29:2: error: Use of undeclared identifier 'x'
+  	x = 5;
+  	^
+  test011.usc:30:2: error: Use of undeclared identifier 'y'
+  	y = 10;
+  	^
+  test011.usc:31:2: error: Use of undeclared identifier 'array'
+  	array[5] = 10;
+  	^
++ test011.usc:31:8: error: @@variable is not an array
++ 	array[5] = 10;
++ 	      ^
+  test011.usc:33:9: error: Use of undeclared identifier 'x'
+  	while (x > 0)
+  	       ^
+  test011.usc:35:5: error: Use of undeclared identifier 'x'
+  		--x;
+  		  ^
+  test011.usc:36:3: error: Use of undeclared identifier 'y'
+  		y = y + x * 2;
+  		^
+  test011.usc:36:7: error: Use of undeclared identifier 'y'
+  		y = y + x * 2;
+  		    ^
+  test011.usc:36:11: error: Use of undeclared identifier 'x'
+  		y = y + x * 2;
+  		        ^
++ test011.usc:37:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test011.usc:40:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+- 11 Error(s)
+?  ^
++ 14 Error(s)
+?  ^
+
+
+======================================================================
+FAIL: test_SemErr_012 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test012.usc:28:6: error: Use of undeclared identifier 'z'\n\tif (z == 2)\n\t    [truncated]... != "test012.usc:28:6: error: Use of undeclared identifier 'z'\n\tif (z == 2)\n\t    [truncated]...
+  test012.usc:28:6: error: Use of undeclared identifier 'z'
+  	if (z == 2)
+  	    ^
+  test012.usc:31:6: error: Use of undeclared identifier 'x'
+  	if (x == 5)
+  	    ^
+  test012.usc:34:3: error: Use of undeclared identifier 'y'
+  		y = 7 + 8 * 2;
+  		^
++ test012.usc:35:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test012.usc:36:11: error: Use of undeclared identifier 'x'
+  	else if (x == 4)
+  	         ^
+  test012.usc:38:5: error: Use of undeclared identifier 'x'
+  		--x;
+  		  ^
++ test012.usc:39:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test012.usc:40:11: error: Use of undeclared identifier 'x'
+  	else if (x == 3)
+  	         ^
+  test012.usc:42:3: error: Use of undeclared identifier 'y'
+  		y = y * y;
+  		^
+  test012.usc:42:7: error: Use of undeclared identifier 'y'
+  		y = y * y;
+  		    ^
+  test012.usc:42:11: error: Use of undeclared identifier 'y'
+  		y = y * y;
+  		        ^
++ test012.usc:43:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test012.usc:46:3: error: Use of undeclared identifier 'z'
+  		z = 42;
+  		^
++ test012.usc:47:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test012.usc:48:1: error: USC requires non-void functions to end with a return
+  }
+  ^
+- 11 Error(s)
+?  ^
++ 15 Error(s)
+?  ^
+
+
+======================================================================
+FAIL: test_SemErr_014 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'\n\tint  [truncated]... != "test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'\n\tint  [truncated]...
+  test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'
+  	int x = funcCallNoArgs();
+  	        ^
+- test014.usc:22:8: error: Cannot assign an expression of type void to int
+- 	int x = funcCallNoArgs();
+- 	      ^
+  test014.usc:23:10: error: Use of undeclared identifier 'funcCallArg'
+  	int y = funcCallArg(z);
+  	        ^
+  test014.usc:23:22: error: Use of undeclared identifier 'z'
+  	int y = funcCallArg(z);
+  	                    ^
+- test014.usc:23:8: error: Cannot assign an expression of type void to int
+- 	int y = funcCallArg(z);
+- 	      ^
+  test014.usc:24:10: error: Use of undeclared identifier 'funcCallWithArgs'
+  	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+  	        ^
+  test014.usc:24:34: error: Use of undeclared identifier 'funcCallNoArgs'
+  	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+  	                                ^
+- test014.usc:24:8: error: Cannot assign an expression of type void to int
+- 	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+- 	      ^
+  test014.usc:26:2: error: Use of undeclared identifier 'testNakedFunc'
+  	testNakedFunc();
+  	^
+  test014.usc:28:6: error: Use of undeclared identifier 'testFunc'
+  	if (testFunc())
+  	    ^
++ test014.usc:30:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test014.usc:31:11: error: Use of undeclared identifier 'testFunc2'
+  	else if (testFunc2(stuff))
+  	         ^
+  test014.usc:31:21: error: Use of undeclared identifier 'stuff'
+  	else if (testFunc2(stuff))
+  	                   ^
++ test014.usc:34:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  test014.usc:36:10: error: Use of undeclared identifier 'testFunc3'
+  	return (testFunc3(--x, y, z, w));
+  	        ^
+  test014.usc:36:31: error: Use of undeclared identifier 'w'
+  	return (testFunc3(--x, y, z, w));
+  	                             ^
+- test014.usc:36:9: error: Expected type int in return statement
+- 	return (testFunc3(--x, y, z, w));
+- 	       ^
+- 15 Error(s)
+?  ^
++ 13 Error(s)
+?  ^
+
+
+======================================================================
+FAIL: test_SemErr_015 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant13.usc:4:6: error: a is not an array\n    a[0] = 1;\n     ^\n1 Error(s)\n [truncated]... != 'semant13.usc:4:7: error: a is not an array\n    a[0] = 1;\n      ^\n1 Error(s)\ [truncated]...
+- semant13.usc:4:6: error: a is not an array
+?                ^
++ semant13.usc:4:7: error: a is not an array
+?                ^
+      a[0] = 1;
+-      ^
++       ^
+? +
+  1 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_semant03e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "semant03e.usc:21:13: error: Use of undeclared identifier 'y'\n\treturn x + y;\n [truncated]... != 'semant03e.usc:20:2: error: USC requires non-void functions to end with a return [truncated]...
+- semant03e.usc:21:13: error: Use of undeclared identifier 'y'
+- 	return x + y;
+- 	           ^
++ semant03e.usc:20:2: error: USC requires non-void functions to end with a return
++ 	}
++ 	^
+  1 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_semant08e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant08e.usc:15:8: error: Cannot assign an expression of type char[] to int\n\ [truncated]... != 'semant08e.usc:16:29: error: Cannot assign an expression of type char[] to int\n [truncated]...
+- semant08e.usc:15:8: error: Cannot assign an expression of type char[] to int
+- 	int x = "This is a string";
+- 	      ^
+- semant08e.usc:16:4: error: Cannot assign an expression of type char[] to int
+?                  ^
++ semant08e.usc:16:29: error: Cannot assign an expression of type char[] to int
+?                  ^^
+  	x = "This is also a string";
+- 	  ^
++ 	                           ^
+- 2 Error(s)
+? ^
++ 1 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_SemErr_semant09e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant09e.usc:18:4: error: Reassignment of arrays is not allowed\n\tx = "This i [truncated]... != 'semant09e.usc:18:29: error: Cannot assign an expression of type char[] to char[ [truncated]...
+- semant09e.usc:18:4: error: Reassignment of arrays is not allowed
++ semant09e.usc:18:29: error: Cannot assign an expression of type char[] to char[]
+  	x = "This is also a string";
+- 	  ^
++ 	                           ^
++ semant09e.usc:18:29: error: Reassignment of arrays is not allowed
++ 	x = "This is also a string";
++ 	                           ^
+- 1 Error(s)
+? ^
++ 2 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_SemErr_semant10e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant10e.usc:16:14: error: Cannot perform op between type char[] and char[]\n\ [truncated]... != 'semant10e.usc:16:24: error: Cannot perform op between type lhsType and rhsType\ [truncated]...
+- semant10e.usc:16:14: error: Cannot perform op between type char[] and char[]
+?                  ^                                         ^ ^^^^     ^ ^^^^
++ semant10e.usc:16:24: error: Cannot perform op between type lhsType and rhsType
+?                  ^                                         ^ ^^^^^     ^ ^^^^^
+  	a = "Stuff" && "Stuff";
++ 	                      ^
++ semant10e.usc:17:24: error: Cannot perform op between type lhsType and rhsType
++ 	a = "Stuff" || "Stuff";
++ 	                      ^
++ semant10e.usc:18:23: error: Cannot perform op between type lhsType and rhsType
++ 	a = "Stuff" + "Stuff";
++ 	                     ^
++ semant10e.usc:19:23: error: Cannot perform op between type lhsType and rhsType
++ 	a = "Stuff" * "Stuff";
++ 	                     ^
++ semant10e.usc:20:14: error: Cannot assign an expression of type char[] to int
++ 	a = !"Stuff";
+  	            ^
+- semant10e.usc:17:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" || "Stuff";
+- 	            ^
+- semant10e.usc:18:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" + "Stuff";
+- 	            ^
+- semant10e.usc:19:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" * "Stuff";
+- 	            ^
+- semant10e.usc:20:4: error: Cannot assign an expression of type char[] to int
+- 	a = !"Stuff";
+- 	  ^
+  5 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_semant11e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant11e.usc:15:9: error: Expected type int in return statement\n\treturn "Str [truncated]... != 'semant11e.usc:15:25: error: Expected type char[] in return statement\n\treturn  [truncated]...
+- semant11e.usc:15:9: error: Expected type int in return statement
+?                  ^                         ----
++ semant11e.usc:15:25: error: Expected type char[] in return statement
+?                  ^^                       +++++++
+  	return "String return!";
++ 	                       ^
+- 	       ^
+- semant11e.usc:16:8: error: Invalid empty return in non-void function
+- 	return;
+- 	      ^
+- 2 Error(s)
+? ^
++ 1 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_Sem_001 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+test001.usc:23:3: error: USC requires non-void functions to end with a return
+		}
+		^
+test001.usc:24:2: error: USC requires non-void functions to end with a return
+	}
+	^
+2 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_006 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+test006.usc:20:25: error: Cannot perform op between type lhsType and rhsType
+	return (20 / 10 * 2 % 3) / 16;
+	                       ^
+1 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_007 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+test007.usc:21:25: error: Cannot perform op between type lhsType and rhsType
+	return (20 / 10 * 2 % 3) / 16;
+	                       ^
+test007.usc:23:29: error: Cannot perform op between type lhsType and rhsType
+	return 20 - 8 * (3 + 5) / 2;
+	                           ^
+2 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_015 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int multiply\n------ArgDecl: int x\n------ArgDecl: int y [truncated]... != 'Program:\n---Function: int multiply\n------ArgDecl: int x\n------ArgDecl: int y [truncated]...
+  Program:
+  ---Function: int multiply
+  ------ArgDecl: int x
+  ------ArgDecl: int y
+  ------CompoundStmt:
+  ---------ReturnStmt:
+  ------------BinaryMath *:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ------------------IdentExpr: y
+? +++
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
++ ------------ToIntExpr: 
+- ------------FuncExpr: multiply
++ ---------------FuncExpr: multiply
+? +++
+- ---------------ConstantExpr: 5
++ ------------------ConstantExpr: 5
+? +++
+- ---------------ConstantExpr: 6
++ ------------------ConstantExpr: 6
+? +++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: 5 * 6 = %d
++ ------------------StringExpr: 5 * 6 = %d
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ---------------------IdentExpr: x
+? ++++++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function multiply
+  function printf
+  ---int x
+  ---int y
+  ---int x
+
+
+======================================================================
+FAIL: test_Sem_016 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+test016.usc:38:13: error: Expected expression of type int[]
+	printArray(array, 5);
+	           ^
+1 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit02 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------ExprStmt\n------ [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------ExprStmt\n------ [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: Hello world!
++ ------------------StringExpr: Hello world!
+? +++
+  
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+
+
+======================================================================
+FAIL: test_Sem_emit03 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------ExprStmt\n------ [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------ExprStmt\n------ [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------ConstantExpr: 5
+- ---------ExprStmt
+- ------------FuncExpr: printf
+- ---------------StringExpr: %d
+- 
+- ---------------BinaryMath *:
+- ------------------ConstantExpr: 5
+  ------------------ConstantExpr: 5
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryMath /:
+?                           ^
++ ------------------BinaryMath *:
+? +++                          ^
+- ------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 5
+? +++
+- ------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 5
+? +++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryMath -:
+?                           ^
++ ------------------BinaryMath /:
+? +++                          ^
+- ------------------ConstantExpr: 100
+- ------------------ConstantExpr: 50
+?                                  -
++ ---------------------ConstantExpr: 5
+? +++
++ ---------------------ConstantExpr: 5
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryCmp ==:
+?                      ^^^^^^
++ ------------------BinaryMath -:
+? +++                     ^^^^^^
+- ------------------ConstantExpr: 5
+- ------------------ConstantExpr: 10
++ ---------------------ConstantExpr: 100
+? +++                                  +
++ ---------------------ConstantExpr: 50
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryCmp !=:
+?                          ^
++ ------------------BinaryCmp ==:
+? +++                         ^
+- ------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 5
+? +++
+- ------------------ConstantExpr: 10
++ ---------------------ConstantExpr: 10
+? +++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryCmp >:
+?                          ^
++ ------------------BinaryCmp !=:
+? +++                         ^^
+- ------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 5
+? +++
+- ------------------ConstantExpr: 10
++ ---------------------ConstantExpr: 10
+? +++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryCmp <:
+?                          ^
++ ------------------BinaryCmp >:
+? +++                         ^
+- ------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 5
+? +++
+- ------------------ConstantExpr: 10
++ ---------------------ConstantExpr: 10
+? +++
++ ---------ExprStmt
++ ------------ToIntExpr: 
++ ---------------FuncExpr: printf
++ ------------------StringExpr: %d
++ 
++ ------------------BinaryCmp <:
++ ---------------------ConstantExpr: 5
++ ---------------------ConstantExpr: 10
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+
+
+======================================================================
+FAIL: test_Sem_emit04 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 5
+  ---------Decl: int y
+  ------------BinaryMath +:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 10
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ---------------------IdentExpr: x
+? ++++++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ---------------------IdentExpr: y
+? ++++++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_emit05 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[11] s [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[11] s [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: char[11] str
+  ------------StringExpr: It worked!
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %s
++ ------------------StringExpr: %s
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: str
++ ---------------------IdentExpr: str
+? ++++++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char[] str
+
+
+======================================================================
+FAIL: test_Sem_emit06 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 97
+  ---------Decl: char a
+- ------------ToCharExpr: 
+?               ^^^^
++ ------------ToIntExpr: 
+?               ^^^
+  ---------------IdentExpr: x
+  ---------Decl: int y
+  ------------ToIntExpr: 
+  ---------------IdentExpr: a
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
+- ---------------BinaryCmp ==:
++ ------------------BinaryCmp ==:
+? +++
++ ---------------------ToIntExpr: 
+- ------------------IdentExpr: x
++ ------------------------IdentExpr: x
+? ++++++
++ ---------------------ToIntExpr: 
++ ------------------------IdentExpr: a
++ ---------ExprStmt
++ ------------ToIntExpr: 
++ ---------------FuncExpr: printf
++ ------------------StringExpr: %d
++ 
+  ------------------ToIntExpr: 
+- ---------------------IdentExpr: a
+?                                 ^
++ ---------------------IdentExpr: y
+?                                 ^
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
+?                             ^
++ ------------------StringExpr: %c
+? +++                            ^
+  
+- ---------------IdentExpr: y
+?                 --        -
++ ------------------ToIntExpr: 
+?                +++++
++ ---------------------IncExpr: a
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %c
++ ------------------StringExpr: %c
+? +++
+  
+- ---------------ToIntExpr: 
++ ------------------ToIntExpr: 
+? +++
+- ------------------IncExpr: a
+- ---------ExprStmt
+- ------------FuncExpr: printf
+- ---------------StringExpr: %c
+- 
+- ---------------ToIntExpr: 
+- ------------------DecExpr: a
++ ---------------------DecExpr: a
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char a
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_emit07 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+emit07.usc:44:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit07.usc:45:2: error: USC requires non-void functions to end with a return
+	}
+	^
+2 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit08 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+emit08.usc:23:2: error: USC requires non-void functions to end with a return
+	}
+	^
+1 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit09 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+emit09.usc:20:28: error: Cannot perform op between type lhsType and rhsType
+	printf("%d\n", x || y || z);
+	                          ^
+1 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit10 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[36] s [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[36] s [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: char[36] str
+  ------------StringExpr: thequickbrownfoxjumpsoverthelazydog
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %s
++ ------------------StringExpr: %s
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: str
++ ---------------------IdentExpr: str
+? ++++++
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %s
++ ------------------StringExpr: %s
+? +++
+  
+- ---------------AddrOfArray:
++ ------------------AddrOfArray:
+? +++
+- ------------------ArraySub: str
++ ---------------------ArraySub: str
+? +++
+- ---------------------ConstantExpr: 8
++ ------------------------ConstantExpr: 8
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char[] str
+
+
+======================================================================
+FAIL: test_Sem_emit11 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+emit11.usc:33:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit11.usc:37:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit11.usc:38:2: error: USC requires non-void functions to end with a return
+	}
+	^
+3 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit12 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+emit12.usc:40:4: error: USC requires non-void functions to end with a return
+			}
+			^
+emit12.usc:45:4: error: USC requires non-void functions to end with a return
+			}
+			^
+emit12.usc:46:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit12.usc:50:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit12.usc:54:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit12.usc:58:3: error: USC requires non-void functions to end with a return
+		}
+		^
+emit12.usc:61:2: error: USC requires non-void functions to end with a return
+	}
+	^
+7 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_quicksort (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+quicksort.usc:35:3: error: USC requires non-void functions to end with a return
+		}
+		^
+quicksort.usc:38:2: error: USC requires non-void functions to end with a return
+	}
+	^
+quicksort.usc:57:24: error: Expected expression of type char[]
+		pivotIdx = partition(array, left, right, pivotIdx);
+		                     ^
+quicksort.usc:58:13: error: Expected expression of type char[]
+		quicksort(array, left, pivotIdx - 1);
+		          ^
+quicksort.usc:59:13: error: Expected expression of type char[]
+		quicksort(array, pivotIdx + 1, right);
+		          ^
+quicksort.usc:66:12: error: Expected expression of type char[]
+	quicksort(letters, 0, 34);
+	          ^
+6 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_semant01 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 50
+  ---------Decl: char c
+- ------------ToCharExpr: 
+- ---------------BinaryMath +:
+? ---
++ ------------BinaryMath +:
++ ---------------ToIntExpr: 
+  ------------------IdentExpr: x
+- ------------------ConstantExpr: 5
+? ---
++ ---------------ConstantExpr: 5
+  ---------Decl: char d
+  ------------ConstantExpr: 127
+  ---------Decl: int y
+  ---------AssignStmt: x
+  ------------ToIntExpr: 
+  ---------------IncExpr: d
+  ---------AssignStmt: y
+  ------------BinaryMath +:
+  ---------------ToIntExpr: 
+  ------------------IdentExpr: d
+  ---------------ConstantExpr: 50
+  ---------ExprStmt
++ ------------ToIntExpr: 
+- ------------FuncExpr: printf
++ ---------------FuncExpr: printf
+? +++
+- ---------------StringExpr: %d
++ ------------------StringExpr: %d
+? +++
+  
++ ------------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ---------------------IdentExpr: x
+? ++++++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char c
+  ---char d
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_semant02 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+semant02.usc:21:3: error: USC requires non-void functions to end with a return
+		}
+		^
+semant02.usc:24:3: error: USC requires non-void functions to end with a return
+		}
+		^
+semant02.usc:25:2: error: USC requires non-void functions to end with a return
+	}
+	^
+3 Error(s)
+
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.111s
+
+FAILED (failures=34)

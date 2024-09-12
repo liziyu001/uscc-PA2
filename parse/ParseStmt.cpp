@@ -278,7 +278,7 @@ shared_ptr<ASTCompoundStmt> Parser::parseCompoundStmt(bool isFuncBody)
 			lastStmt = stmt;
 			stmt = parseStmt();
 		}
-		if (!(retStmt = std::dynamic_pointer_cast<ASTReturnStmt>(lastStmt))) {
+		if (isFuncBody && !(retStmt = std::dynamic_pointer_cast<ASTReturnStmt>(lastStmt))) {
 			if (mCurrReturnType == Type::Void) {
 				retStmt = make_shared<ASTReturnStmt>(nullptr);
 				retVal->addStmt(retStmt);
@@ -289,6 +289,10 @@ shared_ptr<ASTCompoundStmt> Parser::parseCompoundStmt(bool isFuncBody)
 
 		}
 		matchToken(Token::RBrace);
+		if (!isFuncBody) {
+			mSymbols.exitScope();
+		}
+		
 	}
 	
 	return retVal;
@@ -487,6 +491,9 @@ shared_ptr<ASTReturnStmt> Parser::parseReturnStmt()
 	{
 		if (peekIsOneOf({Token::SemiColon}))
 		{
+			if (mCurrReturnType != Type::Void) {
+				reportSemantError("Invalid empty return in non-void function");
+			}
 			retVal = make_shared<ASTReturnStmt>(nullptr);
 			consumeToken();
 		}

@@ -258,7 +258,7 @@ Identifier* SymbolTable::ScopeTable::search(const char* name) noexcept
 	Identifier* ident;
 	ScopeTable* scope;
 
-	ident = scope->searchInScope(name);
+	ident = searchInScope(name);
 	if (ident) {
 		return ident;
 	}
