@@ -252,6 +252,7 @@ shared_ptr<ASTStmt> Parser::parseStmt()
 shared_ptr<ASTCompoundStmt> Parser::parseCompoundStmt(bool isFuncBody)
 {
 	shared_ptr<ASTCompoundStmt> retVal;
+	shared_ptr<ASTReturnStmt> retStmt;
 	SymbolTable::ScopeTable* table;
 	
 	// PA1: Implement
@@ -277,7 +278,16 @@ shared_ptr<ASTCompoundStmt> Parser::parseCompoundStmt(bool isFuncBody)
 			lastStmt = stmt;
 			stmt = parseStmt();
 		}
+		if (!(retStmt = std::dynamic_pointer_cast<ASTReturnStmt>(lastStmt))) {
+			if (mCurrReturnType == Type::Void) {
+				retStmt = make_shared<ASTReturnStmt>(nullptr);
+				retVal->addStmt(retStmt);
+			} else {
+				reportSemantError("USC requires non-void functions to end with a return");
+			}
+		} else {
 
+		}
 		matchToken(Token::RBrace);
 	}
 	
@@ -300,6 +310,12 @@ shared_ptr<ASTStmt> Parser::parseAssignStmt()
 		// Now let's see if this is an array subscript
 		if (peekAndConsume(Token::LBracket))
 		{
+			if (!ident->isArray()) {
+				std::string err = "";
+				err += ident->getName();
+				err += " is not an array";
+				reportSemantError(err);
+			}
 			try
 			{
 				shared_ptr<ASTExpr> expr = parseExpr();
@@ -380,7 +396,21 @@ shared_ptr<ASTStmt> Parser::parseAssignStmt()
 			else
 			{
 				// PA2: Check for semantic errors
-				
+				Type expectT = ident->getType();
+				Type exprT = expr->getType();
+				if (expectT == Type::Char && exprT == Type::Int) {
+					expr = intToChar(expr);
+				} else if (!((expectT == Type::Char && exprT == Type::Char) || (expectT == Type::Int && exprT == Type::Int) || (expectT == Type::Int && exprT == Type::Char))) {
+					std::string err = "Cannot assign an expression of type ";
+					err += getTypeText(exprT);
+					err += " to ";
+					err += getTypeText(expectT);
+					reportSemantError(err);
+				}
+
+				if (ident->isArray()) {
+					reportSemantError("Reassignment of arrays is not allowed");
+				}
 				retVal = make_shared<ASTAssignStmt>(*ident, expr);
 			}
 			
@@ -463,6 +493,15 @@ shared_ptr<ASTReturnStmt> Parser::parseReturnStmt()
 		else
 		{
 			auto expr = parseExpr();
+			Type retType = expr->getType();
+			if (mCurrReturnType == Type::Char && retType == Type::Int) {
+				expr = intToChar(expr);
+			} else if (!((mCurrReturnType == Type::Char && retType == Type::Char) || (mCurrReturnType == Type::Int && retType == Type::Int) || (mCurrReturnType == Type::Int && retType == Type::Char))) {
+					std::string err = "Expected type ";
+					err += getTypeText(retType);
+					err += " in return statement";
+					reportSemantError(err);
+			}
 			retVal = make_shared<ASTReturnStmt>(expr);
 			matchToken(Token::SemiColon);
 		}

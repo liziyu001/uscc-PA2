@@ -119,20 +119,19 @@ SymbolTable::SymbolTable() noexcept
 
 	scope = new ScopeTable(nullptr);
 
-	ident = createIdentifier("@@function");
+	ident = new Identifier("@@function");
 	ident->setType(Type::Function);
 	scope->addIdentifier(ident);
 
-	ident = createIdentifier("@@variable");
+	ident = new Identifier("@@variable");
 	ident->setType(Type::Int);
 	scope->addIdentifier(ident);
 
-	ident = createIdentifier("printf");
+	ident = new Identifier("printf");
 	ident->setType(Type::Function);
 	scope->addIdentifier(ident);
 
 	mCurrScope = scope;
-	
 }
 
 SymbolTable::~SymbolTable() noexcept
@@ -245,7 +244,7 @@ void SymbolTable::ScopeTable::addIdentifier(Identifier* ident)
 Identifier* SymbolTable::ScopeTable::searchInScope(const char* name) noexcept
 {
 	// PA2: Implement
-	auto it = mSymbols.find(std::string(name));
+	auto it = mSymbols.find(name);
 	if (it == mSymbols.end()) {
 		return nullptr;
 	}

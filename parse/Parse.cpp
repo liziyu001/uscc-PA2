@@ -388,9 +388,17 @@ const char* Parser::getTypeText(Type type) const noexcept
 // Otherwise it doesn't do anything.
 std::shared_ptr<ASTExpr> Parser::charToInt(std::shared_ptr<ASTExpr> expr) noexcept
 {
-	std::shared_ptr<ASTExpr> retVal = expr;
+	std::shared_ptr<ASTExpr> retVal;
+	std::shared_ptr<ASTConstantExpr> constExpr;
+	std::shared_ptr<ASTToIntExpr> toIntExpr;
 	
-	// PA2: Implement
+	if ((constExpr = std::dynamic_pointer_cast<ASTConstantExpr>(expr))) {
+		constExpr->changeToInt();
+		retVal = constExpr;
+	} else {
+    	toIntExpr = make_shared<ASTToIntExpr>(expr);
+		retVal = toIntExpr;
+	}
 	
 	return retVal;
 }
@@ -398,7 +406,17 @@ std::shared_ptr<ASTExpr> Parser::charToInt(std::shared_ptr<ASTExpr> expr) noexce
 // Like the above, but in reverse
 std::shared_ptr<ASTExpr> Parser::intToChar(std::shared_ptr<ASTExpr> expr) noexcept
 {
-	std::shared_ptr<ASTExpr> retVal = expr;
+	std::shared_ptr<ASTExpr> retVal;
+	std::shared_ptr<ASTConstantExpr> constExpr;
+	std::shared_ptr<ASTToCharExpr> toCharExpr;
+	
+	if ((constExpr = std::dynamic_pointer_cast<ASTConstantExpr>(expr))) {
+		constExpr->changeToChar();
+		retVal = constExpr;
+	} else {
+    	toCharExpr = make_shared<ASTToCharExpr>(expr);
+		retVal = toCharExpr;
+	}
 	
 	// PA2: Implement
 	

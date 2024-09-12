@@ -37,6 +37,10 @@ shared_ptr<ASTExpr> Parser::parseExpr()
 		retVal = andTerm;
 		// Check if this is followed by an op (optional)
 		shared_ptr<ASTLogicalOr> exprPrime = parseExprPrime(retVal);
+		if (!exprPrime->finalizeOp()) {
+			std::string err = "Cannot perform op between type lhsType and rhsType";
+			reportSemantError(err);
+		}
 		
 		if (exprPrime)
 		{
@@ -98,6 +102,10 @@ shared_ptr<ASTExpr> Parser::parseAndTerm()
 	{
 		retVal = v;
 		prime = parseAndTermPrime(v);
+		if (!prime->finalizeOp()) {
+			std::string err = "Cannot perform op between type lhsType and rhsType";
+			reportSemantError(err);
+		}
 		if (prime != nullptr)
 			retVal = prime;
 	}
@@ -146,6 +154,10 @@ shared_ptr<ASTExpr> Parser::parseRelExpr()
 	{
 		retVal = v;
 		prime = parseRelExprPrime(v);
+		if (!prime->finalizeOp()) {
+			std::string err = "Cannot perform op between type lhsType and rhsType";
+			reportSemantError(err);
+		}
 		if (prime != nullptr)
 			retVal = prime;
 	}
@@ -196,6 +208,10 @@ shared_ptr<ASTExpr> Parser::parseNumExpr()
 	{
 		retVal = v;
 		prime = parseNumExprPrime(v);
+		if (!prime->finalizeOp()) {
+			std::string err = "Cannot perform op between type lhsType and rhsType";
+			reportSemantError(err);
+		}
 		if (prime != nullptr)
 			retVal = prime;
 	}
@@ -244,6 +260,10 @@ shared_ptr<ASTExpr> Parser::parseTerm()
 	{
 		retVal = v;
 		prime = parseTermPrime(v);
+		if (!prime->finalizeOp()) {
+			std::string err = "Cannot perform op between type lhsType and rhsType";
+			reportSemantError(err);
+		}
 		if (prime != nullptr)
 			retVal = prime;
 	}
@@ -609,6 +629,7 @@ shared_ptr<ASTExpr> Parser::parseIdentFactor()
 			}
 		}
 	}
+	retVal = charToInt(retVal);
 	
 	return retVal;
 }
@@ -624,6 +645,8 @@ shared_ptr<ASTExpr> Parser::parseIncFactor()
 		retVal = make_shared<ASTIncExpr>(*getVariable(getTokenTxt()));
 		matchToken(Token::Identifier);
 	}
+
+	retVal = charToInt(retVal);
 	
 	return retVal;
 }
@@ -639,6 +662,8 @@ shared_ptr<ASTExpr> Parser::parseDecFactor()
 		retVal = make_shared<ASTDecExpr>(*getVariable(getTokenTxt()));
 		matchToken(Token::Identifier);
 	}
+
+	retVal = charToInt(retVal);
 
 	return retVal;
 }
