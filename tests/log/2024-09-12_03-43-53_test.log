@@ -1,0 +1,865 @@
+test_SemErr_002 (__main__.SemantTests) ... ok
+test_SemErr_003 (__main__.SemantTests) ... ok
+test_SemErr_004 (__main__.SemantTests) ... ok
+test_SemErr_005 (__main__.SemantTests) ... ok
+test_SemErr_008 (__main__.SemantTests) ... ok
+test_SemErr_009 (__main__.SemantTests) ... ok
+test_SemErr_010 (__main__.SemantTests) ... ok
+test_SemErr_011 (__main__.SemantTests) ... ok
+test_SemErr_012 (__main__.SemantTests) ... ok
+test_SemErr_013 (__main__.SemantTests) ... ok
+test_SemErr_014 (__main__.SemantTests) ... FAIL
+test_SemErr_015 (__main__.SemantTests) ... FAIL
+test_SemErr_semant01e (__main__.SemantTests) ... ok
+test_SemErr_semant02e (__main__.SemantTests) ... ok
+test_SemErr_semant03e (__main__.SemantTests) ... ok
+test_SemErr_semant04e (__main__.SemantTests) ... ok
+test_SemErr_semant05e (__main__.SemantTests) ... ok
+test_SemErr_semant06e (__main__.SemantTests) ... ok
+test_SemErr_semant07e (__main__.SemantTests) ... ok
+test_SemErr_semant08e (__main__.SemantTests) ... FAIL
+test_SemErr_semant09e (__main__.SemantTests) ... FAIL
+test_SemErr_semant10e (__main__.SemantTests) ... FAIL
+test_SemErr_semant11e (__main__.SemantTests) ... ok
+test_SemErr_semant12e (__main__.SemantTests) ... ok
+test_Sem_001 (__main__.SemantTests) ... FAIL
+test_Sem_006 (__main__.SemantTests) ... ok
+test_Sem_007 (__main__.SemantTests) ... ok
+test_Sem_015 (__main__.SemantTests) ... FAIL
+test_Sem_016 (__main__.SemantTests) ... FAIL
+test_Sem_017 (__main__.SemantTests) ... ok
+test_Sem_018 (__main__.SemantTests) ... ok
+test_Sem_emit01 (__main__.SemantTests) ... ok
+test_Sem_emit02 (__main__.SemantTests) ... ok
+test_Sem_emit03 (__main__.SemantTests) ... ok
+test_Sem_emit04 (__main__.SemantTests) ... FAIL
+test_Sem_emit05 (__main__.SemantTests) ... FAIL
+test_Sem_emit06 (__main__.SemantTests) ... FAIL
+test_Sem_emit07 (__main__.SemantTests) ... FAIL
+test_Sem_emit08 (__main__.SemantTests) ... FAIL
+test_Sem_emit09 (__main__.SemantTests) ... FAIL
+test_Sem_emit10 (__main__.SemantTests) ... FAIL
+test_Sem_emit11 (__main__.SemantTests) ... FAIL
+test_Sem_emit12 (__main__.SemantTests) ... FAIL
+test_Sem_quicksort (__main__.SemantTests) ... FAIL
+test_Sem_semant01 (__main__.SemantTests) ... FAIL
+test_Sem_semant02 (__main__.SemantTests) ... ok
+
+======================================================================
+FAIL: test_SemErr_014 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: "test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'\n\tint  [truncated]... != "test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'\n\tint  [truncated]...
+  test014.usc:22:10: error: Use of undeclared identifier 'funcCallNoArgs'
+  	int x = funcCallNoArgs();
+  	        ^
+- test014.usc:22:8: error: Cannot assign an expression of type void to int
+- 	int x = funcCallNoArgs();
+- 	      ^
+  test014.usc:23:10: error: Use of undeclared identifier 'funcCallArg'
+  	int y = funcCallArg(z);
+  	        ^
+  test014.usc:23:22: error: Use of undeclared identifier 'z'
+  	int y = funcCallArg(z);
+  	                    ^
+- test014.usc:23:8: error: Cannot assign an expression of type void to int
+- 	int y = funcCallArg(z);
+- 	      ^
+  test014.usc:24:10: error: Use of undeclared identifier 'funcCallWithArgs'
+  	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+  	        ^
+  test014.usc:24:34: error: Use of undeclared identifier 'funcCallNoArgs'
+  	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+  	                                ^
+- test014.usc:24:8: error: Cannot assign an expression of type void to int
+- 	int z = funcCallWithArgs(z + y, funcCallNoArgs());
+- 	      ^
+  test014.usc:26:2: error: Use of undeclared identifier 'testNakedFunc'
+  	testNakedFunc();
+  	^
+  test014.usc:28:6: error: Use of undeclared identifier 'testFunc'
+  	if (testFunc())
+  	    ^
+  test014.usc:31:11: error: Use of undeclared identifier 'testFunc2'
+  	else if (testFunc2(stuff))
+  	         ^
+  test014.usc:31:21: error: Use of undeclared identifier 'stuff'
+  	else if (testFunc2(stuff))
+  	                   ^
+  test014.usc:36:10: error: Use of undeclared identifier 'testFunc3'
+  	return (testFunc3(--x, y, z, w));
+  	        ^
+  test014.usc:36:31: error: Use of undeclared identifier 'w'
+  	return (testFunc3(--x, y, z, w));
+  	                             ^
+  test014.usc:36:9: error: Expected type int in return statement
+  	return (testFunc3(--x, y, z, w));
+  	       ^
+- 15 Error(s)
+?  ^
++ 12 Error(s)
+?  ^
+
+
+======================================================================
+FAIL: test_SemErr_015 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant13.usc:4:6: error: a is not an array\n    a[0] = 1;\n     ^\n1 Error(s)\n [truncated]... != 'semant13.usc:4:7: error: a is not an array\n    a[0] = 1;\n      ^\n1 Error(s)\ [truncated]...
+- semant13.usc:4:6: error: a is not an array
+?                ^
++ semant13.usc:4:7: error: a is not an array
+?                ^
+      a[0] = 1;
+-      ^
++       ^
+? +
+  1 Error(s)
+
+
+======================================================================
+FAIL: test_SemErr_semant08e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant08e.usc:15:8: error: Cannot assign an expression of type char[] to int\n\ [truncated]... != 'semant08e.usc:16:29: error: Cannot assign an expression of type char[] to int\n [truncated]...
+- semant08e.usc:15:8: error: Cannot assign an expression of type char[] to int
+- 	int x = "This is a string";
+- 	      ^
+- semant08e.usc:16:4: error: Cannot assign an expression of type char[] to int
+?                  ^
++ semant08e.usc:16:29: error: Cannot assign an expression of type char[] to int
+?                  ^^
+  	x = "This is also a string";
+- 	  ^
++ 	                           ^
+- 2 Error(s)
+? ^
++ 1 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_SemErr_semant09e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant09e.usc:18:4: error: Reassignment of arrays is not allowed\n\tx = "This i [truncated]... != 'semant09e.usc:18:29: error: Cannot assign an expression of type char[] to char[ [truncated]...
+- semant09e.usc:18:4: error: Reassignment of arrays is not allowed
++ semant09e.usc:18:29: error: Cannot assign an expression of type char[] to char[]
+  	x = "This is also a string";
+- 	  ^
++ 	                           ^
++ semant09e.usc:18:29: error: Reassignment of arrays is not allowed
++ 	x = "This is also a string";
++ 	                           ^
+- 1 Error(s)
+? ^
++ 2 Error(s)
+? ^
+
+
+======================================================================
+FAIL: test_SemErr_semant10e (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'semant10e.usc:16:14: error: Cannot perform op between type char[] and char[]\n\ [truncated]... != 'semant10e.usc:16:24: error: Cannot perform op between type char[] and char[]\n\ [truncated]...
+- semant10e.usc:16:14: error: Cannot perform op between type char[] and char[]
+?                  ^
++ semant10e.usc:16:24: error: Cannot perform op between type char[] and char[]
+?                  ^
+  	a = "Stuff" && "Stuff";
++ 	                      ^
++ semant10e.usc:17:24: error: Cannot perform op between type char[] and char[]
++ 	a = "Stuff" || "Stuff";
++ 	                      ^
++ semant10e.usc:18:23: error: Cannot perform op between type char[] and char[]
++ 	a = "Stuff" + "Stuff";
++ 	                     ^
++ semant10e.usc:19:23: error: Cannot perform op between type char[] and char[]
++ 	a = "Stuff" * "Stuff";
++ 	                     ^
++ semant10e.usc:20:14: error: Cannot assign an expression of type char[] to int
++ 	a = !"Stuff";
+  	            ^
+- semant10e.usc:17:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" || "Stuff";
+- 	            ^
+- semant10e.usc:18:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" + "Stuff";
+- 	            ^
+- semant10e.usc:19:14: error: Cannot perform op between type char[] and char[]
+- 	a = "Stuff" * "Stuff";
+- 	            ^
+- semant10e.usc:20:4: error: Cannot assign an expression of type char[] to int
+- 	a = !"Stuff";
+- 	  ^
+  5 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_001 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 5
+  ---------Decl: char abc
+  ------------ConstantExpr: 97
+  ---------Decl: int y
+  ------------ConstantExpr: -2424235
+  ---------Decl: char[13] str
+  ------------StringExpr: Hello World!
+  ---------IfStmt: 
+  ------------BinaryCmp ==:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 5
+  ------------CompoundStmt:
+  ---------------WhileStmt
+  ------------------BinaryCmp >:
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: x
++ ------------------------IdentExpr: x
+? +++
+  ---------------------ConstantExpr: 5
+  ------------------CompoundStmt:
+  ---------------------ExprStmt
++ ------------------------ToIntExpr: 
+- ------------------------DecExpr: x
++ ---------------------------DecExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char abc
+  ---char[] str
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_015 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int multiply\n------ArgDecl: int x\n------ArgDecl: int y [truncated]... != 'Program:\n---Function: int multiply\n------ArgDecl: int x\n------ArgDecl: int y [truncated]...
+  Program:
+  ---Function: int multiply
+  ------ArgDecl: int x
+  ------ArgDecl: int y
+  ------CompoundStmt:
+  ---------ReturnStmt:
+  ------------BinaryMath *:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ------------------IdentExpr: y
+? +++
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------FuncExpr: multiply
+  ---------------ConstantExpr: 5
+  ---------------ConstantExpr: 6
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: 5 * 6 = %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function multiply
+  function printf
+  ---int x
+  ---int y
+  ---int x
+
+
+======================================================================
+FAIL: test_Sem_016 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+test016.usc:38:13: error: Expected expression of type int[]
+	printArray(array, 5);
+	           ^
+1 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_emit04 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 5
+  ---------Decl: int y
+  ------------BinaryMath +:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 10
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ------------------IdentExpr: y
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_emit05 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[11] s [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[11] s [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: char[11] str
+  ------------StringExpr: It worked!
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %s
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: str
++ ------------------IdentExpr: str
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char[] str
+
+
+======================================================================
+FAIL: test_Sem_emit06 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 97
+  ---------Decl: char a
+- ------------ToCharExpr: 
+?               ^^^^
++ ------------ToIntExpr: 
+?               ^^^
+  ---------------IdentExpr: x
+  ---------Decl: int y
+  ------------ToIntExpr: 
+  ---------------IdentExpr: a
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
+  ---------------BinaryCmp ==:
++ ------------------ToIntExpr: 
+- ------------------IdentExpr: x
++ ---------------------IdentExpr: x
+? +++
+  ------------------ToIntExpr: 
+  ---------------------IdentExpr: a
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ------------------IdentExpr: y
+? +++
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %c
+  
+  ---------------ToIntExpr: 
+  ------------------IncExpr: a
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %c
+  
+  ---------------ToIntExpr: 
+  ------------------DecExpr: a
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char a
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_emit07 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 5
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
+  ---------------NotExpr:
++ ------------------ToIntExpr: 
+- ------------------IdentExpr: x
++ ---------------------IdentExpr: x
+? +++
+  ---------WhileStmt
+  ------------BinaryCmp >:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 0
+  ------------CompoundStmt:
+  ---------------Decl: int y
+  ------------------ConstantExpr: 8
+  ---------------ExprStmt
+  ------------------FuncExpr: printf
+  ---------------------StringExpr: %d
+  
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: x
++ ------------------------IdentExpr: x
+? +++
+  ---------------ExprStmt
++ ------------------ToIntExpr: 
+- ------------------DecExpr: x
++ ---------------------DecExpr: x
+? +++
+  ---------------WhileStmt
+  ------------------BinaryCmp <:
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: y
++ ------------------------IdentExpr: y
+? +++
+  ---------------------ConstantExpr: 10
+  ------------------CompoundStmt:
+  ---------------------ExprStmt
+  ------------------------FuncExpr: printf
+  ---------------------------StringExpr: %d
+  
++ ---------------------------ToIntExpr: 
+- ---------------------------IdentExpr: y
++ ------------------------------IdentExpr: y
+? +++
+  ---------------------ExprStmt
++ ------------------------ToIntExpr: 
+- ------------------------IncExpr: y
++ ---------------------------IncExpr: y
+? +++
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
+  ---------------NotExpr:
++ ------------------ToIntExpr: 
+- ------------------IdentExpr: x
++ ---------------------IdentExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ------int y
+
+
+======================================================================
+FAIL: test_Sem_emit08 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 0
+  ---------WhileStmt
+  ------------BinaryCmp <:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 2000000000
+  ------------CompoundStmt:
+  ---------------Decl: int y
+  ------------------ConstantExpr: 0
+  ---------------ExprStmt
++ ------------------ToIntExpr: 
+- ------------------IncExpr: x
++ ---------------------IncExpr: x
+? +++
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ------int y
+
+
+======================================================================
+FAIL: test_Sem_emit09 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 0
+  ---------Decl: int y
+  ------------ConstantExpr: 0
+  ---------Decl: int z
+  ------------ConstantExpr: 1
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
+  ---------------LogicalOr: 
+  ------------------LogicalOr: 
++ ---------------------ToIntExpr: 
++ ------------------------IdentExpr: x
++ ---------------------ToIntExpr: 
++ ------------------------IdentExpr: y
++ ------------------ToIntExpr: 
+- ---------------------IdentExpr: x
+?                                 ^
++ ---------------------IdentExpr: z
+?                                 ^
+- ---------------------IdentExpr: y
+- ------------------IdentExpr: z
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ---int y
+  ---int z
+
+
+======================================================================
+FAIL: test_Sem_emit10 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[36] s [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: char[36] s [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: char[36] str
+  ------------StringExpr: thequickbrownfoxjumpsoverthelazydog
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %s
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: str
++ ------------------IdentExpr: str
+? +++
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %s
+  
+  ---------------AddrOfArray:
+  ------------------ArraySub: str
+  ---------------------ConstantExpr: 8
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char[] str
+
+
+======================================================================
+FAIL: test_Sem_emit11 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 1
+  ---------Decl: int y
+  ------------ConstantExpr: 5
+  ---------WhileStmt
+  ------------LogicalAnd: 
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: y
++ ------------------IdentExpr: y
+? +++
+  ------------CompoundStmt:
+  ---------------ExprStmt
+  ------------------FuncExpr: printf
+  ---------------------StringExpr: %d
+  
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: y
++ ------------------------IdentExpr: y
+? +++
+  ---------------ExprStmt
++ ------------------ToIntExpr: 
+- ------------------DecExpr: y
++ ---------------------DecExpr: y
+? +++
+  ---------------IfStmt: 
+  ------------------BinaryCmp ==:
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: y
++ ------------------------IdentExpr: y
+? +++
+  ---------------------ConstantExpr: 1
+  ------------------CompoundStmt:
+  ---------------------AssignStmt: x
+  ------------------------ConstantExpr: 0
+  ------------------CompoundStmt:
+  ---------------------ExprStmt
+  ------------------------FuncExpr: printf
+  ---------------------------StringExpr: y != 1
+  
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+  ---int y
+
+
+======================================================================
+FAIL: test_Sem_emit12 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 1
+  ---------WhileStmt
+  ------------BinaryCmp <:
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------------ConstantExpr: 11
+  ------------CompoundStmt:
+  ---------------ExprStmt
+  ------------------FuncExpr: printf
+  ---------------------StringExpr: %d
++ ---------------------ToIntExpr: 
+- ---------------------IdentExpr: x
++ ------------------------IdentExpr: x
+? +++
+  ---------------IfStmt: 
+  ------------------NotExpr:
+  ---------------------BinaryMath %:
++ ------------------------ToIntExpr: 
+- ------------------------IdentExpr: x
++ ---------------------------IdentExpr: x
+? +++
+  ------------------------ConstantExpr: 2
+  ------------------CompoundStmt:
+  ---------------------ExprStmt
+  ------------------------FuncExpr: printf
+  ---------------------------StringExpr:  is a multiple of %d.
+  
+  ---------------------------ConstantExpr: 2
+  ---------------------IfStmt: 
+  ------------------------NotExpr:
+  ---------------------------BinaryMath %:
++ ------------------------------ToIntExpr: 
+- ------------------------------IdentExpr: x
++ ---------------------------------IdentExpr: x
+? +++
+  ------------------------------ConstantExpr: 3
+  ------------------------CompoundStmt:
+  ---------------------------ExprStmt
+  ------------------------------FuncExpr: printf
+  ---------------------------------StringExpr: %d is a multiple of %d.
+  
++ ---------------------------------ToIntExpr: 
+- ---------------------------------IdentExpr: x
++ ------------------------------------IdentExpr: x
+? +++
+  ---------------------------------ConstantExpr: 3
+  ---------------------IfStmt: 
+  ------------------------NotExpr:
+  ---------------------------BinaryMath %:
++ ------------------------------ToIntExpr: 
+- ------------------------------IdentExpr: x
++ ---------------------------------IdentExpr: x
+? +++
+  ------------------------------ConstantExpr: 5
+  ------------------------CompoundStmt:
+  ---------------------------ExprStmt
+  ------------------------------FuncExpr: printf
+  ---------------------------------StringExpr: %d is a multiple of %d.
+  
++ ---------------------------------ToIntExpr: 
+- ---------------------------------IdentExpr: x
++ ------------------------------------IdentExpr: x
+? +++
+  ---------------------------------ConstantExpr: 5
+  ------------------IfStmt: 
+  ---------------------NotExpr:
+  ------------------------BinaryMath %:
++ ---------------------------ToIntExpr: 
+- ---------------------------IdentExpr: x
++ ------------------------------IdentExpr: x
+? +++
+  ---------------------------ConstantExpr: 3
+  ---------------------CompoundStmt:
+  ------------------------ExprStmt
+  ---------------------------FuncExpr: printf
+  ------------------------------StringExpr:  is a multiple of %d.
+  
+  ------------------------------ConstantExpr: 3
+  ---------------------IfStmt: 
+  ------------------------NotExpr:
+  ---------------------------BinaryMath %:
++ ------------------------------ToIntExpr: 
+- ------------------------------IdentExpr: x
++ ---------------------------------IdentExpr: x
+? +++
+  ------------------------------ConstantExpr: 5
+  ------------------------CompoundStmt:
+  ---------------------------ExprStmt
+  ------------------------------FuncExpr: printf
+  ---------------------------------StringExpr:  is a multiple of %d.
+  
+  ---------------------------------ConstantExpr: 5
+  ------------------------CompoundStmt:
+  ---------------------------ExprStmt
+  ------------------------------FuncExpr: printf
+  ---------------------------------StringExpr:  is not a multiple of 2, 3 or 5.
+  
+  ---------------ExprStmt
++ ------------------ToIntExpr: 
+- ------------------IncExpr: x
++ ---------------------IncExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---int x
+
+
+======================================================================
+FAIL: test_Sem_quicksort (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 
+quicksort.usc:28:26: error: Cannot perform op between type char and int
+		if (array[i] < pivotVal)
+		                       ^
+quicksort.usc:57:24: error: Expected expression of type char[]
+		pivotIdx = partition(array, left, right, pivotIdx);
+		                     ^
+quicksort.usc:58:13: error: Expected expression of type char[]
+		quicksort(array, left, pivotIdx - 1);
+		          ^
+quicksort.usc:59:13: error: Expected expression of type char[]
+		quicksort(array, pivotIdx + 1, right);
+		          ^
+quicksort.usc:66:12: error: Expected expression of type char[]
+	quicksort(letters, 0, 34);
+	          ^
+5 Error(s)
+
+
+======================================================================
+FAIL: test_Sem_semant01 (__main__.SemantTests)
+----------------------------------------------------------------------
+AssertionError: 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]... != 'Program:\n---Function: int main\n------CompoundStmt:\n---------Decl: int x\n--- [truncated]...
+  Program:
+  ---Function: int main
+  ------CompoundStmt:
+  ---------Decl: int x
+  ------------ConstantExpr: 50
+  ---------Decl: char c
+- ------------ToCharExpr: 
+- ---------------BinaryMath +:
+? ---
++ ------------BinaryMath +:
++ ---------------ToIntExpr: 
+  ------------------IdentExpr: x
+- ------------------ConstantExpr: 5
+? ---
++ ---------------ConstantExpr: 5
+  ---------Decl: char d
+  ------------ConstantExpr: 127
+  ---------Decl: int y
+  ---------AssignStmt: x
+  ------------ToIntExpr: 
+  ---------------IncExpr: d
+  ---------AssignStmt: y
+  ------------BinaryMath +:
+  ---------------ToIntExpr: 
+  ------------------IdentExpr: d
+  ---------------ConstantExpr: 50
+  ---------ExprStmt
+  ------------FuncExpr: printf
+  ---------------StringExpr: %d
+  
++ ---------------ToIntExpr: 
+- ---------------IdentExpr: x
++ ------------------IdentExpr: x
+? +++
+  ---------ReturnStmt:
+  ------------ConstantExpr: 0
+  Symbols:
+  function main
+  function printf
+  ---char c
+  ---char d
+  ---int x
+  ---int y
+
+
+----------------------------------------------------------------------
+Ran 46 tests in 0.099s
+
+FAILED (failures=19)

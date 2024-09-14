@@ -27,29 +27,46 @@ using namespace uscc::parse;
 bool ASTLogicalAnd::finalizeOp() noexcept
 {
 	// PA2: Implement
-	
-	return true;
+	mType = Type::Int;
+	bool retVal = true;
+
+	if (!(mLHS->getType() == Type::Int && mRHS->getType() == Type::Int)) {
+		retVal = false;
+	}
+	return retVal;
 }
 
 bool ASTLogicalOr::finalizeOp() noexcept
 {
 	// PA2: Implement
-	
-	return true;
+	mType = Type::Int;
+	bool retVal = true;
+	if (!(mLHS->getType() == Type::Int && mRHS->getType() == Type::Int)) {
+		retVal = false;
+	}
+	return retVal;
 }
 
 bool ASTBinaryCmpOp::finalizeOp() noexcept
 {
 	// PA2: Implement
-	
-	return true;
+	mType = Type::Int;
+	bool retVal = true;
+	if (!(mLHS->getType() == Type::Int && mRHS->getType() == Type::Int)) {
+		retVal = false;
+	}
+	return retVal;
 }
 
 bool ASTBinaryMathOp::finalizeOp() noexcept
 {
 	// PA2: Implement
-	
-	return true;
+	mType = Type::Int;
+	bool retVal = true;
+	if (!(mLHS->getType() == Type::Int && mRHS->getType() == Type::Int)) {
+		retVal = false;
+	}
+	return retVal;
 }
 
 ASTConstantExpr::ASTConstantExpr(const std::string& constStr)
